@@ -8,3 +8,7 @@
 2)  `gcc -shared -o libTestLib.so libTestLib.o`
 3)  `gcc main_for_lib.c -o test -lTestLib -L.`
 
+- second way
+
+ручная загрузка библиотеки приложением (dlopen/dlsym) 
+--> TODO
