@@ -1,0 +1,6 @@
+
+*.out
+*.o
+firt_module/Module.symvers
+shared_lib/main
+*.order

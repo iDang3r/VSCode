@@ -1,12 +1,26 @@
 #include <stdio.h>
-#include "libTestLib.h"
+#include <dlfcn.h>
 
 int main() {
 
-    int a = 0;
+    void* lib_ptr = NULL;
+    int (*inc)(int) = NULL;
 
-    scanf("%d", &a);
-    printf("%d\n", inc(a));
+    lib_ptr = dlopen("libTestLib.so", RTLD_LAZY);
+
+    if (lib_ptr == NULL) {
+        printf("Error: %s\n", dlerror());
+        return 1;
+    }
+
+    inc = dlsym(lib_ptr, "inc");
+
+    int num = 0;
+    scanf("%d", &num);
+    printf("%d\n", inc(num));
+
+    dlclose(lib_ptr);
+    lib_ptr = NULL;
 
     return 0;
 }
